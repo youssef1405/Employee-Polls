@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const usersSlice = createSlice({
-  name: 'users',
+const pollsSlice = createSlice({
+  name: 'polls',
   initialState: [],
   reducers: {},
 });
 
-export default usersSlice.reducer;
+export default pollsSlice.reducer;
