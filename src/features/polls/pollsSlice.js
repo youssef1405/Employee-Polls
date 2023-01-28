@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+
 import { _getQuestions } from '../../_DATA';
 
 const pollsSlice = createSlice({
   name: 'polls',
   initialState: {
-    questions: [],
+    data: {},
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadPolls.pending, (state, action) => {});
     builder.addCase(loadPolls.fulfilled, (state, action) => {
-      state.questions = action.payload;
+      state.data = action.payload;
     });
     builder.addCase(loadPolls.rejected, (state, action) => {});
   },
