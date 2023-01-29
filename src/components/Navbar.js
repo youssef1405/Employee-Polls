@@ -1,7 +1,9 @@
 import Wrapper from '../assests/wrappers/Navbar';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const username = useSelector((state) => state.users.currentUser);
   return (
     <Wrapper>
       <ul>
@@ -17,7 +19,7 @@ const Navbar = () => {
           </li>
         </div>
         <div>
-          <li>username</li>
+          <li>{username}</li>
           <li>Logout</li>
         </div>
       </ul>
