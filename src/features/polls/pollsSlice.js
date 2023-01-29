@@ -5,13 +5,13 @@ import { _getQuestions } from '../../_DATA';
 const pollsSlice = createSlice({
   name: 'polls',
   initialState: {
-    data: {},
+    data: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(loadPolls.pending, (state, action) => {});
     builder.addCase(loadPolls.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = Object.values(action.payload);
     });
     builder.addCase(loadPolls.rejected, (state, action) => {});
   },

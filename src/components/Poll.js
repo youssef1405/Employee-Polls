@@ -1,9 +1,9 @@
-const Poll = ({ username, date }) => {
+const Poll = ({ author, timestamp }) => {
   return (
     <div>
-      <h3>{username}</h3>
-      <p>{date}</p>
-      <hr />
+      <h3>{author}</h3>
+      <p>{timestamp}</p>
+
       <button>Show</button>
     </div>
   );
