@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.article`
   border: 2px solid #d6d6d6;
-  width: 300px;
+  width: 250px;
   text-align: center;
   border-radius: 5px;
   margin-bottom: 10px;

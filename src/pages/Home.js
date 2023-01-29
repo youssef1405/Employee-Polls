@@ -22,10 +22,10 @@ const Home = () => {
   console.log(answeredPolls);
 
   return (
-    <div>
+    <main>
       <PollsList polls={newQuestions} title='New Polls' />
       <PollsList polls={answeredPolls} title='Answered Polls' />
-    </div>
+    </main>
   );
 };
 
