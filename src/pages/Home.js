@@ -1,40 +1,30 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { loadPolls } from '../store';
-import { Poll } from '../components';
+import { useSelector } from 'react-redux';
+
+import { PollsList } from '../components';
 
 const Home = () => {
   const polls = useSelector((state) => state.polls.data);
   const currentUser = useSelector((state) => state.users.currentUser);
 
-  const renderedAnsweredPolls = polls
-    .filter(
-      (poll) =>
-        poll.optionOne.votes.includes(currentUser) ||
-        poll.optionTwo.votes.includes(currentUser)
-    )
-    .map((poll) => (
-      <Poll key={poll.id} author={poll.author} timestamp={poll.timestamp} />
-    ));
+  const answeredPolls = polls.filter(
+    (poll) =>
+      poll.optionOne.votes.includes(currentUser) ||
+      poll.optionTwo.votes.includes(currentUser)
+  );
 
-  const renderedNewQuestions = polls
-    .filter(
-      (poll) =>
-        !poll.optionOne.votes.includes(currentUser) &&
-        !poll.optionTwo.votes.includes(currentUser)
-    )
-    .map((poll) => (
-      <Poll key={poll.id} author={poll.author} timestamp={poll.timestamp} />
-    ));
+  const newQuestions = polls.filter(
+    (poll) =>
+      !poll.optionOne.votes.includes(currentUser) &&
+      !poll.optionTwo.votes.includes(currentUser)
+  );
 
-  console.log(renderedNewQuestions);
-  console.log(renderedAnsweredPolls);
+  console.log(newQuestions);
+  console.log(answeredPolls);
 
   return (
     <div>
-      {renderedNewQuestions}
-      <hr />
-      {renderedAnsweredPolls}
+      <PollsList polls={newQuestions} title='New Polls' />
+      <PollsList polls={answeredPolls} title='Answered Polls' />
     </div>
   );
 };
