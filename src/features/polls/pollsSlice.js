@@ -15,6 +15,11 @@ const pollsSlice = createSlice({
         (poll) => poll.id === action.payload
       );
     },
+    answerQuestion: (state, action) => {
+      const { id, user, option } = action.payload;
+      const answeredPoll = state.data.find((poll) => poll.id === id);
+      answeredPoll[option].votes.push(user);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loadPolls.pending, (state, action) => {});
@@ -45,6 +50,6 @@ export const savePoll = createAsyncThunk(
   }
 );
 
-export const { setOpenedQuestion } = pollsSlice.actions;
+export const { setOpenedQuestion, answerQuestion } = pollsSlice.actions;
 
 export default pollsSlice.reducer;

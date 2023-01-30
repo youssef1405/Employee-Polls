@@ -27,7 +27,7 @@ function App() {
           <Route path='new-poll' element={<NewPoll />} />
           <Route path='questions/:questionId' element={<OpenedPoll />} />
         </Route>
-        <Route path='/login' element={<Login />} />
+        <Route path='login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -16,8 +16,8 @@ const OpenedPoll = () => {
 
       <h3>Would You Rather</h3>
       <div className='options'>
-        <Option text={optionOne.text} />
-        <Option text={optionTwo.text} />
+        <Option text={optionOne.text} option='optionOne' />
+        <Option text={optionTwo.text} option='optionTwo' />
       </div>
     </Wrapper>
   );

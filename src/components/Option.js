@@ -1,10 +1,20 @@
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { answerQuestion } from '../store';
 
-const Option = ({ text }) => {
+const Option = ({ text, option }) => {
+  const dispatch = useDispatch();
+  const { id } = useSelector((state) => state.polls.openedQuestion);
+  const { user } = useSelector((state) => state.users.currentUser);
+
+  const handleClick = () => {
+    dispatch(answerQuestion({ id, user, option }));
+  };
+
   return (
     <Wrapper>
       <p>{text}</p>
-      <button>Vote</button>
+      <button onClick={handleClick}>Vote</button>
     </Wrapper>
   );
 };

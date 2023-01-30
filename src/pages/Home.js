@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import { PollsList } from '../components';
 
 const Home = () => {
+  const naviagte = useNavigate();
   const polls = useSelector((state) => state.polls.data);
   const currentUser = useSelector((state) => state.users.currentUser.user);
 
@@ -20,6 +22,13 @@ const Home = () => {
 
   console.log(newQuestions);
   console.log(answeredPolls);
+
+  useEffect(() => {
+    if (!currentUser) {
+      naviagte('/login');
+      return;
+    }
+  });
 
   return (
     <main>
