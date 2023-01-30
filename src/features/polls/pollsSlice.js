@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { _getQuestions } from '../../_DATA';
+import { _getQuestions, _saveQuestion } from '../../_DATA';
 
 const pollsSlice = createSlice({
   name: 'polls',
@@ -22,6 +22,12 @@ const pollsSlice = createSlice({
       state.data = Object.values(action.payload);
     });
     builder.addCase(loadPolls.rejected, (state, action) => {});
+    builder.addCase(savePoll.pending, (state, action) => {});
+    builder.addCase(savePoll.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.data.push(action.payload);
+    });
+    builder.addCase(savePoll.rejected, (state, action) => {});
   },
 });
 
@@ -29,6 +35,15 @@ export const loadPolls = createAsyncThunk('polls/loadPolls', async () => {
   const response = await _getQuestions();
   return response;
 });
+
+export const savePoll = createAsyncThunk(
+  'polls/savePoll',
+  async (poll, thunkAPI) => {
+    const response = await _saveQuestion(poll);
+    console.log(response);
+    return response;
+  }
+);
 
 export const { setOpenedQuestion } = pollsSlice.actions;
 
