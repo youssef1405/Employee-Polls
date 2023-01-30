@@ -1,6 +1,7 @@
 import Wrapper from '../assests/wrappers/Navbar';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { setCurrentUser } from '../store';
 
 const Navbar = () => {
   const { user, avatarURL } = useSelector((state) => state.users.currentUser);
@@ -24,7 +25,11 @@ const Navbar = () => {
             <img className='avatar' src={avatarURL} alt='avatar' />
             <span>{user}</span>
           </li>
-          <li>Logout</li>
+          <li>
+            <Link to='/login' onClick={() => setCurrentUser({})}>
+              Logout
+            </Link>
+          </li>
         </div>
       </ul>
     </Wrapper>
