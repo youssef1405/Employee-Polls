@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-  const username = useSelector((state) => state.users.currentUser);
+  const { user, avatarURL } = useSelector((state) => state.users.currentUser);
+
   return (
     <Wrapper>
       <ul>
@@ -19,7 +20,10 @@ const Navbar = () => {
           </li>
         </div>
         <div>
-          <li>{username}</li>
+          <li className='user-item'>
+            <img className='avatar' src={avatarURL} alt='avatar' />
+            <span>{user}</span>
+          </li>
           <li>Logout</li>
         </div>
       </ul>

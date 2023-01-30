@@ -21,14 +21,15 @@ const Wrapper = styled.article`
     font-size: 0.8rem;
   }
 
-  button {
+  a {
     width: 90%;
+    display: block;
+    text-decoration: none;
     padding: 0.3rem 0;
-    margin-bottom: 0.3rem;
+    margin: 0.3rem auto;
     background-color: #fff;
     border: 1px solid #00bfa6;
     border-radius: 5px;
-    cursor: pointer;
   }
 `;
 

@@ -4,7 +4,7 @@ import { PollsList } from '../components';
 
 const Home = () => {
   const polls = useSelector((state) => state.polls.data);
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const currentUser = useSelector((state) => state.users.currentUser.user);
 
   const answeredPolls = polls.filter(
     (poll) =>

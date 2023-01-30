@@ -21,7 +21,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (users[username] && password === users[username].password) {
-      dispatch(setCurrentUser(users[username].id));
+      const user = users[username].id;
+      const avatarURL = users[username].avatarURL;
+      dispatch(setCurrentUser({user, avatarURL}));
       navigate('/');
     }
   };
