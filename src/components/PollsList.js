@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Poll from './Poll';
 import Wrapper from '../assests/wrappers/PollsList';
 

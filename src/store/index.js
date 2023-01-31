@@ -3,11 +3,15 @@ import pollsReducer from '../features/polls/pollsSlice';
 import usersReducer from '../features/users/usersSlice';
 import {
   loadPolls,
-  setOpenedQuestion,
+  showPoll,
   savePoll,
-  answerQuestion,
+  changePollStatus,
 } from '../features/polls/pollsSlice';
-import { getUsers, setCurrentUser } from '../features/users/usersSlice';
+import {
+  getUsers,
+  setCurrentUser,
+  addAnswer,
+} from '../features/users/usersSlice';
 
 export const store = configureStore({
   reducer: {
@@ -20,7 +24,8 @@ export {
   loadPolls,
   getUsers,
   setCurrentUser,
-  setOpenedQuestion,
+  showPoll,
   savePoll,
-  answerQuestion,
+  changePollStatus,
+  addAnswer,
 };
