@@ -2,6 +2,8 @@ import Wrapper from '../assests/wrappers/Navbar';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentUser } from '../store';
+import { FaHome, FaPoll, FaSignOutAlt } from 'react-icons/fa';
+import { GiTrophy } from 'react-icons/gi';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -12,13 +14,21 @@ const Navbar = () => {
       <ul>
         <div>
           <li>
-            <Link to='/home'>Home</Link>
+            <Link to='/home'>
+              <FaHome /> Home
+            </Link>
           </li>
           <li>
-            <Link to='/leaderboard'>Leaderboard</Link>
+            <Link to='/leaderboard'>
+              <GiTrophy />
+              Leaderboard
+            </Link>
           </li>
           <li>
-            <Link to='/new-poll'>New</Link>
+            <Link to='/new-poll'>
+              <FaPoll />
+              New Poll
+            </Link>
           </li>
         </div>
         {user && (
@@ -30,6 +40,7 @@ const Navbar = () => {
 
             <li>
               <Link to='/' onClick={() => dispatch(setCurrentUser({}))}>
+                <FaSignOutAlt />
                 Logout
               </Link>
             </li>
