@@ -17,6 +17,10 @@ const usersSlice = createSlice({
       const { qid, option } = action.payload;
       answers[qid] = option;
     },
+
+    addPoll: (state, action) => {
+      state.data[state.currentUser.user].questions.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getUsers.pending, (state, action) => {});
@@ -32,6 +36,6 @@ export const getUsers = createAsyncThunk('users/getUsers', async () => {
   return response;
 });
 
-export const { setCurrentUser, addAnswer } = usersSlice.actions;
+export const { setCurrentUser, addAnswer, addPoll } = usersSlice.actions;
 
 export default usersSlice.reducer;

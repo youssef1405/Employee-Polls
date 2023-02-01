@@ -5,7 +5,8 @@ import { VscCheck } from 'react-icons/vsc';
 
 const Option = ({ text, option }) => {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.polls.openedQuestion);
+  const question = useSelector((state) => state.polls.openedQuestion);
+  const { id } = question;
   const { user } = useSelector((state) => state.users.currentUser);
   const { answers } = useSelector((state) => state.users.data[user]);
 
@@ -13,6 +14,10 @@ const Option = ({ text, option }) => {
     dispatch(changePollStatus({ id, user, option }));
     dispatch(addAnswer({ qid: id, option }));
   };
+
+  if (answers[id] && option === answers[id]) {
+    console.log(question[option].votes.length);
+  }
 
   return (
     <Wrapper>

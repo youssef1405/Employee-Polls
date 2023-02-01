@@ -11,6 +11,7 @@ import {
   getUsers,
   setCurrentUser,
   addAnswer,
+  addPoll,
 } from '../features/users/usersSlice';
 
 export const store = configureStore({
@@ -28,4 +29,5 @@ export {
   savePoll,
   changePollStatus,
   addAnswer,
+  addPoll,
 };

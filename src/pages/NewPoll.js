@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { savePoll } from '../store';
+import { savePoll, addPoll } from '../store';
 import { useNavigate } from 'react-router-dom';
 
 const NewPoll = () => {
@@ -10,11 +10,16 @@ const NewPoll = () => {
   const [optionOneText, setOptionOne] = useState('');
   const [optionTwoText, setOptionTwo] = useState('');
   const author = useSelector((state) => state.users.currentUser.user);
+  const polls = useSelector((state) => state.polls.data);
+  const { questions } = useSelector((state) => state.users.data[author]);
+
+  const { id } = polls.map((poll) => !questions.includes(poll.id));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
-    naviagte('/');
+    dispatch(addPoll(id));
+    naviagte('/home');
   };
 
   return (
