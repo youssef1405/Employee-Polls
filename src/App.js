@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { loadPolls } from './store';
-import { Poll } from './components';
+
 import {
   SharedLayout,
   Login,
@@ -22,12 +22,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<SharedLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Login />} />
+          <Route path='/home' element={<Home />} />
           <Route path='leaderboard' element={<Leaderboard />} />
           <Route path='new-poll' element={<NewPoll />} />
           <Route path='questions/:questionId' element={<OpenedPoll />} />
         </Route>
-        <Route path='login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

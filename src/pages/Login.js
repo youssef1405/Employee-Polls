@@ -23,8 +23,8 @@ const Login = () => {
     if (users[username] && password === users[username].password) {
       const user = users[username].id;
       const avatarURL = users[username].avatarURL;
-      dispatch(setCurrentUser({user, avatarURL}));
-      navigate('/');
+      dispatch(setCurrentUser({ user, avatarURL }));
+      navigate('/home');
     }
   };
 
