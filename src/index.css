@@ -8,7 +8,17 @@ body {
   background-color: #f3f2ef;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: #4e4e4e;
 }
+/* style={{
+  display: 'flex',
+  alignItems: 'center',
+  gap: 10,
+  textAlign: 'center',
+}} */

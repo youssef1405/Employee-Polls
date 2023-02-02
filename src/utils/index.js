@@ -10,3 +10,11 @@ export const formatDate = (timestamp) => {
     minutes < 10 ? '0' + minutes : minutes
   } | ${month}/${day}/${year}`;
 };
+
+export function sortUsers(users) {
+  return users.sort((user1, user2) => {
+    let user1Total = user1.questions.length + Object.keys(user1.answers).length;
+    let user2Total = user2.questions.length + Object.keys(user2.answers).length;
+    return user1Total < user2Total ? 1 : user1Total > user2Total ? -1 : 0;
+  });
+}
