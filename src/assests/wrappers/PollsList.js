@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   text-align: center;
-  width: 90%;
-  margin: 1rem auto;
+  width: 60%;
+  margin: 2rem auto;
 
   header {
     border: 1px solid #d6d6d6;
@@ -17,11 +17,10 @@ const Wrapper = styled.section`
   main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 0.5rem;
     border: 1px solid #d6d6d6;
 
-    padding-top: 1rem;
+    padding: 1rem;
   }
 `;
 

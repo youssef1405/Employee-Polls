@@ -8,6 +8,11 @@ body {
   background-color: #f3f2ef;
 }
 
+/* div {
+  width: 85%;
+  margin: 0 auto;
+} */
+
 .leaderboard-header {
   display: flex;
   align-items: center;
@@ -16,9 +21,3 @@ body {
   margin-bottom: 1rem;
   color: #4e4e4e;
 }
-/* style={{
-  display: 'flex',
-  alignItems: 'center',
-  gap: 10,
-  textAlign: 'center',
-}} */

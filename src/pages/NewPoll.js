@@ -13,11 +13,12 @@ const NewPoll = () => {
   const polls = useSelector((state) => state.polls.data);
   const { questions } = useSelector((state) => state.users.data[author]);
 
-  const { id } = polls.map((poll) => !questions.includes(poll.id));
+  const { id } = polls.find((poll) => !questions.includes(poll.id));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
+    console.log(id);
     dispatch(addPoll(id));
     naviagte('/home');
   };

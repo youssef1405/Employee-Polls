@@ -32,7 +32,7 @@ const Navbar = () => {
           </li>
         </div>
         {user && (
-          <div>
+          <div className='user-menu'>
             <li className='user-item'>
               <img className='avatar' src={avatarURL} alt='avatar' />
               <span>{user}</span>

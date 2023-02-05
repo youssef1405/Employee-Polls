@@ -1,7 +1,7 @@
 import Wrapper from '../assests/wrappers/LoginForm';
 import logo from '../assests/images/main-img.svg';
-import { getUsers, setCurrentUser } from '../store';
-import { useEffect, useState } from 'react';
+import { setCurrentUser } from '../store';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,10 +13,6 @@ const Login = () => {
   const users = useSelector((state) => state.users.data);
 
   console.log(users);
-
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { loadPolls } from './store';
+import { loadPolls, getUsers } from './store';
 
 import {
   SharedLayout,
@@ -16,6 +16,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadPolls());
+    dispatch(getUsers());
   }, [dispatch]);
 
   return (
