@@ -6,29 +6,41 @@ import { VscCheck } from 'react-icons/vsc';
 const Option = ({ text, option }) => {
   const dispatch = useDispatch();
   const question = useSelector((state) => state.polls.openedQuestion);
-  const { id } = question;
+  const polls = useSelector((state) => state.polls.data);
+  const { id } = question; // opended question id
   const { user } = useSelector((state) => state.users.currentUser);
   const { answers } = useSelector((state) => state.users.data[user]);
+  const selected = answers[id] && option === answers[id];
 
   const handleClick = () => {
-    dispatch(changePollStatus({ id, user, option }));
     dispatch(addAnswer({ qid: id, option }));
+    dispatch(changePollStatus({ id, user, option }));
   };
 
-  if (answers[id] && option === answers[id]) {
-    console.log(question[option].votes.length);
-  }
+  const answeredQuestions = polls.find((poll) => poll.id === id);
+  const totalPollVotes =
+    answeredQuestions['optionOne'].votes.length +
+    answeredQuestions['optionTwo'].votes.length;
+
 
   return (
     <Wrapper>
-      <p>
-        {text}
-        {answers[id] && option === answers[id] ? (
+      {selected && (
+        <div className='stats'>
+          <span>{answeredQuestions[option].votes.length} voted</span>
           <VscCheck className='selected' />
-        ) : (
-          ''
-        )}
-      </p>
+          <span>
+            {(
+              (answeredQuestions[option].votes.length / totalPollVotes) *
+              100
+            ).toFixed()}
+            %
+          </span>
+        </div>
+      )}
+
+      <p>{text}</p>
+
       <button onClick={handleClick} disabled={answers[id]}>
         Vote
       </button>
@@ -41,25 +53,34 @@ const Wrapper = styled.div`
   width: 350px;
   text-align: center;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .stats {
+    display: flex;
+    gap: 7rem;
+    align-items: center;
+  }
 
   p {
     font-size: 0.9rem;
     margin: 0;
     padding: 0.6rem 0;
-    /* height: 3rem; */
   }
   .selected {
-    background-color: #00b0ff;
-    font-size: 1rem;
-    border-radius: 50%;
     color: #fff;
-    padding: 0.1rem;
+    background-color: #3452eb;
+    border-radius: 50%;
+    padding: 2px;
+    margin-top: 5px;
   }
 
   button {
     width: 100%;
     border: none;
-    padding: 0.5rem 0;
+    padding: 0.7rem 0;
     background-color: #61a266;
     color: #fff;
     cursor: pointer;
