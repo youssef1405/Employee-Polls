@@ -27,7 +27,7 @@ const Home = () => {
   useEffect(() => {
     if (!currentUser) {
       naviagte('/login');
-      // toast.warn('Please sign in first!');
+      toast.warn('Please sign in first!');
       return;
     }
   });

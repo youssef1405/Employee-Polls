@@ -6,6 +6,7 @@ const Wrapper = styled.main`
   align-items: center;
   width: 80%;
   margin: 2rem auto;
+  color: #4e4e4e;
   h1 {
     margin-bottom: 3rem;
   }
@@ -41,7 +42,6 @@ const Wrapper = styled.main`
     border: none;
     padding: 0.7rem;
     font-size: 0.9rem;
-    color: #4e4e4e;
     border-radius: 5px;
   }
   button {

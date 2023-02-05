@@ -8,25 +8,31 @@ import { toast } from 'react-toastify';
 const NewPoll = () => {
   const dispatch = useDispatch();
   const naviagte = useNavigate();
+
   const [optionOneText, setOptionOne] = useState('');
   const [optionTwoText, setOptionTwo] = useState('');
-  const author = useSelector((state) => state.users.currentUser.user);
-  const polls = useSelector((state) => state.polls.data);
-  const { questions } = useSelector((state) => state.users.data[author]);
 
-  const { id } = polls.find((poll) => !questions.includes(poll.id));
+  const author = useSelector((state) => state.users.currentUser.user);
+  console.log(author);
+  const polls = useSelector((state) => state.polls.data);
+
+  // const questions = useSelector((state) => state.users.data[author].questions);
+  const users = useSelector((state) => state.users.data);
+
+  const poll =
+    users && polls.find((poll) => users[author].questions.includes(poll.id)); // newly
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
-    console.log(id);
-    dispatch(addPoll(id));
+    console.log(poll.id);
+    dispatch(addPoll(poll.id));
     naviagte('/');
   };
 
   useEffect(() => {
     if (!author) {
-      naviagte('/');
+      naviagte('/login');
       toast.warn('Please sign in first!');
       return;
     }
