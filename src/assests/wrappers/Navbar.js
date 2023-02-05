@@ -25,6 +25,9 @@ const Wrapper = styled.nav`
     display: flex;
     flex-direction: column;
     align-items: center;
+    &:hover {
+      color: #b7b7b7;
+    }
   }
 
   .user-item {

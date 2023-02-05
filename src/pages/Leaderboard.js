@@ -13,9 +13,9 @@ const Leaderboard = () => {
   return (
     <section>
       <header className='leaderboard-header'>
-        <GiTrophy />
+        <GiTrophy className='trophy-icon' />
         <h2>Leaderboard</h2>
-        <GiTrophy />
+        <GiTrophy className='trophy-icon' />
       </header>
       <Wrapper>
         <div className='header'>Users</div>
@@ -93,7 +93,7 @@ const Wrapper = styled.div`
     color: #fff;
     font-weight: 500;
     font-size: 1.1rem;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
   }
 `;
 

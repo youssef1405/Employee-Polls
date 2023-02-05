@@ -85,6 +85,7 @@ const Wrapper = styled.section`
       margin-bottom: 0.3rem;
       font-weight: 500;
       font-size: 0.95rem;
+      color: #4e4e4e;
     }
     input {
       margin-bottom: 1rem;

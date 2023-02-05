@@ -28,8 +28,13 @@ const Wrapper = styled.article`
     padding: 0.3rem 0;
     margin: 0.3rem auto;
     background-color: #fff;
-    border: 1px solid #00bfa6;
     border-radius: 5px;
+    background-color: #4e4e4e;
+    color: #fff;
+    font-weight: 500;
+    &:hover {
+      background-color: #b7b7b7;
+    }
   }
 `;
 
