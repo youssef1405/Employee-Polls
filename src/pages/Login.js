@@ -4,6 +4,7 @@ import { setCurrentUser } from '../store';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -20,8 +21,12 @@ const Login = () => {
       const user = users[username].id;
       const avatarURL = users[username].avatarURL;
       dispatch(setCurrentUser({ user, avatarURL }));
-      navigate('/home');
+      navigate('/');
+      return;
     }
+    setUsername('');
+    setPassword('');
+    toast.error('Username or password is invalid. Please try again!');
   };
 
   return (

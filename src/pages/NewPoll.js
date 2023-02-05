@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { savePoll, addPoll } from '../store';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const NewPoll = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,16 @@ const NewPoll = () => {
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
     console.log(id);
     dispatch(addPoll(id));
-    naviagte('/home');
+    naviagte('/');
   };
+
+  useEffect(() => {
+    if (!author) {
+      naviagte('/');
+      toast.warn('Please sign in first!');
+      return;
+    }
+  });
 
   return (
     <Wrapper>

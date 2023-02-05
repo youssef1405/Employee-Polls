@@ -14,7 +14,7 @@ const Navbar = () => {
       <ul>
         <div>
           <li>
-            <Link to='/home'>
+            <Link to='/'>
               <FaHome /> Home
             </Link>
           </li>

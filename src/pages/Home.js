@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PollsList } from '../components';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const naviagte = useNavigate();
@@ -26,6 +27,7 @@ const Home = () => {
   useEffect(() => {
     if (!currentUser) {
       naviagte('/login');
+      // toast.warn('Please sign in first!');
       return;
     }
   });
