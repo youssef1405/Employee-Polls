@@ -11,13 +11,13 @@ const ToggleQuestions = ({ show }) => {
     <Wrapper>
       <button
         className={isShowingNewPolls && 'active-btn'}
-        onClick={() => dispatch(togglePolls())}
+        onClick={() => dispatch(togglePolls(true))}
       >
         Show New Polls
       </button>
       <button
         className={!isShowingNewPolls && 'active-btn'}
-        onClick={() => dispatch(togglePolls())}
+        onClick={() => dispatch(togglePolls(false))}
       >
         Show Answered Polls
       </button>

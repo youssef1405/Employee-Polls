@@ -1,13 +1,18 @@
 import Wrapper from '../assests/wrappers/Navbar';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentUser } from '../store';
+import { setCurrentUser, togglePolls } from '../store';
 import { FaHome, FaPoll, FaSignOutAlt } from 'react-icons/fa';
 import { GiTrophy } from 'react-icons/gi';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const { user, avatarURL } = useSelector((state) => state.users.currentUser);
+
+  const logout = () => {
+    dispatch(setCurrentUser({}));
+    dispatch(togglePolls(true));
+  };
 
   return (
     <Wrapper>
@@ -39,7 +44,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to='/' onClick={() => dispatch(setCurrentUser({}))}>
+              <Link to='/' onClick={logout}>
                 <FaSignOutAlt />
                 Logout
               </Link>

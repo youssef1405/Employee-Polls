@@ -22,7 +22,7 @@ const pollsSlice = createSlice({
       answeredPoll[option].votes.push(user);
     },
     togglePolls: (state, action) => {
-      state.isShowingNewPolls = !state.isShowingNewPolls
+      state.isShowingNewPolls = action.payload
     }
   },
   extraReducers: (builder) => {
