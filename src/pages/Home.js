@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { PollsList, ToggleQuestions } from '../components';
+import { PollsList, ToggleQuestions, Loading } from '../components';
 import { toast } from 'react-toastify';
 import { sortPolls } from '../utils';
 
@@ -9,7 +9,7 @@ const Home = () => {
   const naviagte = useNavigate();
   const polls = useSelector((state) => state.polls.data);
   const currentUser = useSelector((state) => state.users.currentUser.user);
-  const { isShowingNewPolls } = useSelector((state) => state.polls);
+  const { isShowingNewPolls, isLoading } = useSelector((state) => state.polls);
 
   const answeredPolls = polls.filter(
     (poll) =>
@@ -33,6 +33,11 @@ const Home = () => {
       return;
     }
   });
+
+  if (isLoading) {
+    console.log('loading');
+    return <Loading text='Creating a New Poll in Progress...' />;
+  }
 
   return (
     <main>

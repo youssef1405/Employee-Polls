@@ -16,7 +16,7 @@ const Wrapper = styled.section`
 
   main {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 0.5rem;
     border: 1px solid #d6d6d6;

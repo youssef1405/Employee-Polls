@@ -8,6 +8,7 @@ const pollsSlice = createSlice({
     data: [],
     openedQuestion: null,
     isShowingNewPolls: true,
+    isLoading: false,
   },
   reducers: {
     showPoll: (state, action) => {
@@ -22,8 +23,8 @@ const pollsSlice = createSlice({
       answeredPoll[option].votes.push(user);
     },
     togglePolls: (state, action) => {
-      state.isShowingNewPolls = action.payload
-    }
+      state.isShowingNewPolls = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loadPolls.pending, (state, action) => {});
@@ -31,10 +32,14 @@ const pollsSlice = createSlice({
       state.data = Object.values(action.payload);
     });
     builder.addCase(loadPolls.rejected, (state, action) => {});
-    builder.addCase(savePoll.pending, (state, action) => {});
+    builder.addCase(savePoll.pending, (state, action) => {
+      console.log('pending');
+      state.isLoading = true;
+    });
     builder.addCase(savePoll.fulfilled, (state, action) => {
-      console.log(action.payload);
+      //console.log(action.payload);
       state.data.push(action.payload);
+      state.isLoading = false;
     });
     builder.addCase(savePoll.rejected, (state, action) => {});
   },
