@@ -26,7 +26,8 @@ const Wrapper = styled.nav`
     flex-direction: column;
     align-items: center;
     &:hover {
-      color: #b7b7b7;
+      /* color: #b7b7b7; */
+      color: #2e2e2e;
     }
   }
 

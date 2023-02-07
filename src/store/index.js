@@ -6,6 +6,7 @@ import {
   showPoll,
   savePoll,
   changePollStatus,
+  togglePolls,
 } from '../features/polls/pollsSlice';
 import {
   getUsers,
@@ -30,4 +31,5 @@ export {
   changePollStatus,
   addAnswer,
   addPoll,
+  togglePolls,
 };

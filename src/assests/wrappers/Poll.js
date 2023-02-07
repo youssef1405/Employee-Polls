@@ -33,7 +33,7 @@ const Wrapper = styled.article`
     color: #fff;
     font-weight: 500;
     &:hover {
-      background-color: #b7b7b7;
+      background-color: #2e2e2e;
     }
   }
 `;

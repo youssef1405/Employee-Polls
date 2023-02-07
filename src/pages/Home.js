@@ -1,13 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { PollsList } from '../components';
+import { PollsList, ToggleQuestions } from '../components';
 import { toast } from 'react-toastify';
 
 const Home = () => {
   const naviagte = useNavigate();
   const polls = useSelector((state) => state.polls.data);
   const currentUser = useSelector((state) => state.users.currentUser.user);
+  const { isShowingNewPolls } = useSelector((state) => state.polls);
 
   const answeredPolls = polls.filter(
     (poll) =>
@@ -34,8 +35,12 @@ const Home = () => {
 
   return (
     <main>
-      <PollsList polls={newQuestions} title='New Polls' />
-      <PollsList polls={answeredPolls} title='Answered Polls' />
+      <ToggleQuestions />
+      {isShowingNewPolls ? (
+        <PollsList polls={newQuestions} title='New Polls' />
+      ) : (
+        <PollsList polls={answeredPolls} title='Answered Polls' />
+      )}
     </main>
   );
 };
