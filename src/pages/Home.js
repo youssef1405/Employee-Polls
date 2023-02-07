@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PollsList, ToggleQuestions } from '../components';
 import { toast } from 'react-toastify';
+import { sortPolls } from '../utils';
 
 const Home = () => {
   const naviagte = useNavigate();
@@ -37,9 +38,9 @@ const Home = () => {
     <main>
       <ToggleQuestions />
       {isShowingNewPolls ? (
-        <PollsList polls={newQuestions} title='New Polls' />
+        <PollsList polls={sortPolls(newQuestions)} title='New Polls' />
       ) : (
-        <PollsList polls={answeredPolls} title='Answered Polls' />
+        <PollsList polls={sortPolls(answeredPolls)} title='Answered Polls' />
       )}
     </main>
   );

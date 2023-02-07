@@ -18,3 +18,13 @@ export function sortUsers(users) {
     return user1Total < user2Total ? 1 : user1Total > user2Total ? -1 : 0;
   });
 }
+
+export function sortPolls(polls) {
+  return polls.sort((poll1, poll2) => {
+    return poll1.timestamp < poll2.timestamp
+      ? 1
+      : poll1.timestamp > poll2.timestamp
+      ? -1
+      : 0;
+  });
+}

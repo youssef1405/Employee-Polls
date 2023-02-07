@@ -32,8 +32,8 @@ const Wrapper = styled.section`
   justify-content: space-between;
 
   button {
-    width: 45%;
-    padding: 1rem 0;
+    width: 48%;
+    padding: 1rem 0.5rem;
     background-color: #7e7e7e;
     border: none;
     border-radius: 5px;
