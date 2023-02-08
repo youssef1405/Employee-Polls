@@ -39,7 +39,16 @@ const Wrapper = styled.section`
       padding: 0.5rem;
       border-radius: 8px;
       color: #4e4e4e;
+      &.error {
+        border-color: tomato;
+      }
     }
+  }
+
+  .error-msg {
+    color: tomato;
+    margin-top: 1rem;
+    font-size: 0.9rem;
   }
 
   button {

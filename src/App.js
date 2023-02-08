@@ -34,7 +34,7 @@ function App() {
           <Route path='*' element={<Error />} />
         </Route>
       </Routes>
-      <ToastContainer position='top-center' />
+      <ToastContainer position='top-center' data-testid='toast-msg' />
     </BrowserRouter>
   );
 }

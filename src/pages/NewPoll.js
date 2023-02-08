@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Wrapper from '../assests/wrappers/NewPoll';
 import { Loading } from '../components';
+import { VscWarning } from 'react-icons/vsc';
 
 const NewPoll = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const NewPoll = () => {
 
   const [optionOneText, setOptionOne] = useState('');
   const [optionTwoText, setOptionTwo] = useState('');
+  const [isBlank, setIsBlank] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const author = useSelector((state) => state.users.currentUser.user);
   const polls = useSelector((state) => state.polls.data);
@@ -24,6 +27,14 @@ const NewPoll = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!optionOneText || !optionTwoText) {
+      setIsBlank(true);
+      setErrorMessage(
+        'You must enter the first and second options or You will not be able to create a new poll'
+      );
+      return;
+    }
+    setIsBlank(false);
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
     console.log(poll.id);
     dispatch(addPoll(poll.id));
@@ -36,12 +47,7 @@ const NewPoll = () => {
       toast.warn('Please sign in first!');
       return;
     }
-  });
-
-  // if (isLoading) {
-  //   console.log('loading');
-  //   return <Loading />;
-  // }
+  }, [author, naviagte]);
 
   return (
     <Wrapper>
@@ -55,6 +61,8 @@ const NewPoll = () => {
             placeholder='Option One'
             value={optionOneText}
             onChange={(e) => setOptionOne(e.target.value)}
+            className={isBlank ? 'error' : ''}
+            data-tesid='optionOne-input'
           />
         </div>
         <div>
@@ -64,9 +72,14 @@ const NewPoll = () => {
             placeholder='Option Two'
             value={optionTwoText}
             onChange={(e) => setOptionTwo(e.target.value)}
+            className={isBlank ? 'error' : ''}
+            data-testid='optionTwo-input'
           />
         </div>
-        <button>Create</button>
+        <button data-testid='new-poll-btn'>Create</button>
+        <div data-testid='error-msg' className='error-msg'>
+          {isBlank && errorMessage}
+        </div>
       </form>
     </Wrapper>
   );

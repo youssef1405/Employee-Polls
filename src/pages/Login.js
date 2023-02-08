@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.data);
@@ -17,16 +18,18 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (users[username] && password === users[username].password) {
+    if (users && users[username] && password === users[username].password) {
       const user = users[username].id;
       const avatarURL = users[username].avatarURL;
       dispatch(setCurrentUser({ user, avatarURL }));
+      setIsValid(false);
       navigate('/');
       return;
     }
     setUsername('');
     setPassword('');
-    toast.error('Username or password is invalid. Please try again!');
+    // toast.error('Username or password is invalid. Please try again!');
+    setIsValid(true);
   };
 
   return (
@@ -42,7 +45,11 @@ const Login = () => {
             type='text'
             placeholder='Username'
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setUsername(e.target.value);
+              setIsValid(false);
+            }}
+            data-testid='username-input'
           />
         </div>
         <div>
@@ -51,11 +58,22 @@ const Login = () => {
             type='password'
             placeholder='Password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setIsValid(false);
+            }}
+            data-testid='password-input'
           />
         </div>
-        <button>Login</button>
+        <button data-testid='login-btn'>Login</button>
       </form>
+      <div>
+        {isValid && (
+          <p className='invalid' data-testid='invalid'>
+            Username or password is invalid. Please try again!
+          </p>
+        )}
+      </div>
     </Wrapper>
   );
 };

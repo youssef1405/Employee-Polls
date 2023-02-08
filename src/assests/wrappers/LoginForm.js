@@ -61,6 +61,13 @@ const Wrapper = styled.main`
       color: #4e4e4e;
     }
   }
+
+  .invalid {
+    color: tomato;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
 `;
 
 export default Wrapper;

@@ -7,21 +7,19 @@ const Option = ({ text, option }) => {
   const dispatch = useDispatch();
   const question = useSelector((state) => state.polls.openedQuestion);
   const polls = useSelector((state) => state.polls.data);
-  const { id } = question; // opended question id
   const { user } = useSelector((state) => state.users.currentUser);
   const { answers } = useSelector((state) => state.users.data[user]);
-  const selected = answers[id] && option === answers[id];
+  const selected = answers[question.id] && option === answers[question.id];
 
   const handleClick = () => {
-    dispatch(addAnswer({ qid: id, option }));
-    dispatch(changePollStatus({ id, user, option }));
+    dispatch(addAnswer({ qid: question.id, option }));
+    dispatch(changePollStatus({ id: question.id, user, option }));
   };
 
-  const answeredQuestions = polls.find((poll) => poll.id === id);
+  const answeredQuestions = polls.find((poll) => poll.id === question.id);
   const totalPollVotes =
     answeredQuestions['optionOne'].votes.length +
     answeredQuestions['optionTwo'].votes.length;
-
 
   return (
     <Wrapper>
@@ -41,7 +39,11 @@ const Option = ({ text, option }) => {
 
       <p>{text}</p>
 
-      <button onClick={handleClick} disabled={answers[id]}>
+      <button
+        data-testid='vote-button'
+        onClick={handleClick}
+        disabled={answers[question.id]}
+      >
         Vote
       </button>
     </Wrapper>
