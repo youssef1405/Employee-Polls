@@ -25,6 +25,21 @@ This a polls app that allows employees create their own polls and vote to other 
 - Styled components
 
 ## Screenshots
+- Login page
+![image](https://user-images.githubusercontent.com/18706769/217675986-c7338561-9480-401c-b1b9-65c61f14f2ce.png)
+
+- Home page
+![image](https://user-images.githubusercontent.com/18706769/217676149-38892418-e38a-4a6c-a26b-a069990dd14b.png)
+
+- Leaderboard page
+![image](https://user-images.githubusercontent.com/18706769/217676241-8db918c2-bfaf-442c-93cf-0c61d443a203.png)
+
+- New Poll Page
+![image](https://user-images.githubusercontent.com/18706769/217676310-95f46303-6607-41b2-94ce-e36b388b7758.png)
+
+- Poll Page
+![image](https://user-images.githubusercontent.com/18706769/217676398-a335340e-8061-4e65-a39d-cd5ce1f91188.png)
+
 
 ## author
 
