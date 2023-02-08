@@ -1,5 +1,5 @@
 import error from '../assests/images/404.svg';
-import styled from 'styled-components';
+import Wrapper from '../assests/wrappers/Error';
 
 const Error = () => {
   return (
@@ -10,20 +10,5 @@ const Error = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #4e4e4e;
-
-  img {
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 1rem;
-  }
-`;
 
 export default Error;

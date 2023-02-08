@@ -1,46 +1,44 @@
-// import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Option } from '../components';
-import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import Wrapper from '../assests/wrappers/OpenedPoll';
 
 const OpenedPoll = () => {
-  const poll = useSelector((state) => state.polls.openedQuestion);
-  const { author, optionOne, optionTwo } = poll;
-  const avatarURL = useSelector((state) => state.users.data[author].avatarURL);
-  console.log(poll);
+  const naviagte = useNavigate();
+  const polls = useSelector((state) => state.polls);
+  const users = useSelector((state) => state.users.data);
+  const user = useSelector((state) => state.users.currentUser.user);
+
+  useEffect(() => {
+    if (!user) {
+      naviagte('/login');
+      toast.warn('Please sign in first!');
+      return;
+    }
+  });
 
   return (
-    <Wrapper>
-      <h2>Poll by {author}</h2>
-      <img src={avatarURL} alt='' />
+    polls.openedQuestion && (
+      <Wrapper>
+        <h2>Poll by {polls.openedQuestion.author}</h2>
+        <img src={users[polls.openedQuestion.author].avatarURL} alt='' />
 
-      <h3>Would You Rather</h3>
-      <div className='options'>
-        <Option text={optionOne.text} option='optionOne' />
-        <Option text={optionTwo.text} option='optionTwo' />
-      </div>
-    </Wrapper>
+        <h3>Would You Rather</h3>
+        <div className='options'>
+          <Option
+            text={polls.openedQuestion.optionOne.text}
+            option='optionOne'
+          />
+          <Option
+            text={polls.openedQuestion.optionTwo.text}
+            option='optionTwo'
+          />
+        </div>
+      </Wrapper>
+    )
   );
 };
-
-const Wrapper = styled.div`
-  text-align: center;
-  h2,
-  h3 {
-    color: #4e4e4e;
-  }
-  img {
-    border-radius: 50%;
-    width: 200px;
-    margin-bottom: 1rem;
-  }
-
-  .options {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-`;
 
 export default OpenedPoll;

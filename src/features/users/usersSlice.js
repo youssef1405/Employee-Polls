@@ -25,17 +25,23 @@ const usersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getUsers.pending, (state, action) => {});
+    // builder.addCase(getUsers.pending, (state, action) => {});
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.data = action.payload;
     });
-    builder.addCase(getUsers.rejected, (state, action) => {});
+    builder.addCase(getUsers.rejected, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 
-export const getUsers = createAsyncThunk('users/getUsers', async () => {
-  const response = await _getUsers();
-  return response;
+export const getUsers = createAsyncThunk('users/getUsers', async (thunkAPI) => {
+  try {
+    const response = await _getUsers();
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export const { setCurrentUser, addAnswer, addPoll } = usersSlice.actions;

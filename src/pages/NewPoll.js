@@ -4,8 +4,6 @@ import { savePoll, addPoll } from '../store';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Wrapper from '../assests/wrappers/NewPoll';
-import { Loading } from '../components';
-import { VscWarning } from 'react-icons/vsc';
 
 const NewPoll = () => {
   const dispatch = useDispatch();
@@ -19,8 +17,6 @@ const NewPoll = () => {
   const author = useSelector((state) => state.users.currentUser.user);
   const polls = useSelector((state) => state.polls.data);
   const users = useSelector((state) => state.users.data);
-  const { isLoading } = useSelector((state) => state.polls);
-  console.log(isLoading);
 
   const poll =
     users && polls.find((poll) => users[author].questions.includes(poll.id)); // newly
@@ -36,7 +32,6 @@ const NewPoll = () => {
     }
     setIsBlank(false);
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
-    console.log(poll.id);
     dispatch(addPoll(poll.id));
     naviagte('/');
   };

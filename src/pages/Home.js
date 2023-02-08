@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PollsList, ToggleQuestions, Loading } from '../components';
-import { toast } from 'react-toastify';
 import { sortPolls } from '../utils';
 
 const Home = () => {
@@ -23,9 +22,6 @@ const Home = () => {
       !poll.optionTwo.votes.includes(currentUser)
   );
 
-  console.log(newQuestions);
-  console.log(answeredPolls);
-
   useEffect(() => {
     if (!currentUser) {
       naviagte('/login');
@@ -34,7 +30,6 @@ const Home = () => {
   });
 
   if (isLoading) {
-    console.log('loading');
     return <Loading text='Creating a New Poll in Progress...' />;
   }
 

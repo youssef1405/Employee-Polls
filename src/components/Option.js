@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePollStatus, addAnswer } from '../store';
-import { VscCheck } from 'react-icons/vsc';
+import { VscCheck, VscChromeClose } from 'react-icons/vsc';
+import Wrapper from '../assests/wrappers/Option';
 
 const Option = ({ text, option }) => {
   const dispatch = useDispatch();
@@ -9,6 +9,7 @@ const Option = ({ text, option }) => {
   const polls = useSelector((state) => state.polls.data);
   const { user } = useSelector((state) => state.users.currentUser);
   const { answers } = useSelector((state) => state.users.data[user]);
+  const answered = answers[question.id];
   const selected = answers[question.id] && option === answers[question.id];
 
   const handleClick = () => {
@@ -16,20 +17,26 @@ const Option = ({ text, option }) => {
     dispatch(changePollStatus({ id: question.id, user, option }));
   };
 
-  const answeredQuestions = polls.find((poll) => poll.id === question.id);
+  const answeredQuestion = polls.find((poll) => poll.id === question.id);
   const totalPollVotes =
-    answeredQuestions['optionOne'].votes.length +
-    answeredQuestions['optionTwo'].votes.length;
+    answeredQuestion['optionOne'].votes.length +
+    answeredQuestion['optionTwo'].votes.length;
 
   return (
     <Wrapper>
-      {selected && (
+      {answered && (
         <div className='stats'>
-          <span>{answeredQuestions[option].votes.length} voted</span>
-          <VscCheck className='selected' />
-          <span>
+          <span className='votes'>
+            {answeredQuestion[option].votes.length} voted
+          </span>
+          {selected ? (
+            <VscCheck className='icons yes' />
+          ) : (
+            <VscChromeClose className='icons no' />
+          )}
+          <span className='pct'>
             {(
-              (answeredQuestions[option].votes.length / totalPollVotes) *
+              (answeredQuestion[option].votes.length / totalPollVotes) *
               100
             ).toFixed()}
             %
@@ -39,55 +46,11 @@ const Option = ({ text, option }) => {
 
       <p>{text}</p>
 
-      <button
-        data-testid='vote-button'
-        onClick={handleClick}
-        disabled={answers[question.id]}
-      >
+      <button onClick={handleClick} disabled={answers[question.id]}>
         Vote
       </button>
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  border: 1px solid #d6d6d6;
-  width: 350px;
-  text-align: center;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  .stats {
-    display: flex;
-    gap: 7rem;
-    align-items: center;
-  }
-
-  p {
-    font-size: 0.9rem;
-    margin: 0;
-    padding: 0.6rem 0;
-  }
-  .selected {
-    color: #fff;
-    background-color: #3452eb;
-    border-radius: 50%;
-    padding: 2px;
-    margin-top: 5px;
-  }
-
-  button {
-    width: 100%;
-    border: none;
-    padding: 0.7rem 0;
-    background-color: #61a266;
-    color: #fff;
-    cursor: pointer;
-    font-weight: 600;
-  }
-`;
 
 export default Option;

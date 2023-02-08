@@ -3,8 +3,7 @@ import logo from '../assests/images/main-img.svg';
 import { setCurrentUser } from '../store';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,8 +12,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.data);
-
-  console.log(users);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +25,6 @@ const Login = () => {
     }
     setUsername('');
     setPassword('');
-    // toast.error('Username or password is invalid. Please try again!');
     setIsValid(true);
   };
 

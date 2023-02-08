@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { loadPolls, getUsers } from './store';
 import { ToastContainer } from 'react-toastify';
@@ -17,6 +17,7 @@ import {
 
 function App() {
   const dispatch = useDispatch();
+  const authUser = useSelector((state) => state.users.currentUser);
   useEffect(() => {
     dispatch(loadPolls());
     dispatch(getUsers());

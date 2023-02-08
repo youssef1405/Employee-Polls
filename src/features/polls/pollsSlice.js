@@ -12,7 +12,6 @@ const pollsSlice = createSlice({
   },
   reducers: {
     showPoll: (state, action) => {
-      console.log(action.payload);
       state.openedQuestion = state.data.find(
         (poll) => poll.id === action.payload
       );
@@ -33,29 +32,36 @@ const pollsSlice = createSlice({
     });
     builder.addCase(loadPolls.rejected, (state, action) => {});
     builder.addCase(savePoll.pending, (state, action) => {
-      console.log('pending');
       state.isLoading = true;
     });
     builder.addCase(savePoll.fulfilled, (state, action) => {
-      //console.log(action.payload);
       state.data.push(action.payload);
       state.isLoading = false;
     });
-    builder.addCase(savePoll.rejected, (state, action) => {});
+    builder.addCase(savePoll.rejected, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 
 export const loadPolls = createAsyncThunk('polls/loadPolls', async () => {
-  const response = await _getQuestions();
-  return response;
+  try {
+    const response = await _getQuestions();
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export const savePoll = createAsyncThunk(
   'polls/savePoll',
   async (poll, thunkAPI) => {
-    const response = await _saveQuestion(poll);
-    console.log(response);
-    return response;
+    try {
+      const response = await _saveQuestion(poll);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 
