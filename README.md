@@ -12,8 +12,10 @@ This a polls app that allows employees create their own polls and vote to other 
 - Run npm start
 - The app runs on port 3000
 - use one of the following usernames and passwords to sign in
-  - username mtsamis - password: xyz123
-  - username sarahedo - password: password123
+  - username: mtsamis - password: xyz123
+  - username: sarahedo - password: password123
+  - username: zoshikanlu - password: pass246
+  - username: tylermcginnis - password: abc321
 
 ## Built with
 
