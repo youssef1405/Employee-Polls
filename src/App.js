@@ -26,12 +26,40 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<Login />} />
         <Route path='/' element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path='leaderboard' element={<Leaderboard />} />
-          <Route path='new-poll' element={<NewPoll />} />
-          <Route path='questions/:questionId' element={<OpenedPoll />} />
+          <Route
+            index
+            element={
+              <Login authUser={authUser}>
+                <Home />
+              </Login>
+            }
+          />
+
+          <Route
+            path='leaderboard'
+            element={
+              <Login authUser={authUser}>
+                <Leaderboard />
+              </Login>
+            }
+          />
+          <Route
+            path='add'
+            element={
+              <Login authUser={authUser}>
+                <NewPoll />
+              </Login>
+            }
+          />
+          <Route
+            path='questions/:questionId'
+            element={
+              <Login authUser={authUser}>
+                <OpenedPoll />
+              </Login>
+            }
+          />
           <Route path='*' element={<Error />} />
         </Route>
       </Routes>

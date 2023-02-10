@@ -1,33 +1,24 @@
-import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { PollsList, ToggleQuestions, Loading } from '../components';
 import { sortPolls } from '../utils';
 
 const Home = () => {
-  const naviagte = useNavigate();
   const polls = useSelector((state) => state.polls.data);
-  const currentUser = useSelector((state) => state.users.currentUser.user);
+  const currentUser = useSelector((state) => state.users.currentUser);
   const { isShowingNewPolls, isLoading } = useSelector((state) => state.polls);
 
   const answeredPolls = polls.filter(
     (poll) =>
-      poll.optionOne.votes.includes(currentUser) ||
-      poll.optionTwo.votes.includes(currentUser)
+      poll.optionOne.votes.includes(currentUser.user) ||
+      poll.optionTwo.votes.includes(currentUser.user)
   );
 
   const newQuestions = polls.filter(
     (poll) =>
-      !poll.optionOne.votes.includes(currentUser) &&
-      !poll.optionTwo.votes.includes(currentUser)
+      !poll.optionOne.votes.includes(currentUser.user) &&
+      !poll.optionTwo.votes.includes(currentUser.user)
   );
-
-  useEffect(() => {
-    if (!currentUser) {
-      naviagte('/login');
-      return;
-    }
-  });
 
   if (isLoading) {
     return <Loading text='Creating a New Poll in Progress...' />;

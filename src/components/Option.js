@@ -2,13 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changePollStatus, addAnswer } from '../store';
 import { VscCheck, VscChromeClose } from 'react-icons/vsc';
 import Wrapper from '../assests/wrappers/Option';
+import { useParams } from 'react-router-dom';
 
 const Option = ({ text, option }) => {
   const dispatch = useDispatch();
-  const question = useSelector((state) => state.polls.openedQuestion);
+  const { questionId } = useParams();
   const polls = useSelector((state) => state.polls.data);
   const { user } = useSelector((state) => state.users.currentUser);
   const { answers } = useSelector((state) => state.users.data[user]);
+  const question = polls.find((poll) => poll.id === questionId);
   const answered = answers[question.id];
   const selected = answers[question.id] && option === answers[question.id];
 

@@ -1,25 +1,13 @@
 import React from 'react';
 import { sortUsers } from '../utils';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { GiTrophy } from 'react-icons/gi';
-import { toast } from 'react-toastify';
 import Wrapper from '../assests/wrappers/Leaderboard';
 
 const Leaderboard = () => {
-  const naviagte = useNavigate();
   const { data } = useSelector((state) => state.users);
-  const { user } = useSelector((state) => state.users.currentUser);
   const sortedUsers = data && sortUsers(Object.values(data));
 
-  useEffect(() => {
-    if (!user) {
-      naviagte('/login');
-      toast.warn('Please sign in first!');
-      return;
-    }
-  });
 
   return (
     <section>

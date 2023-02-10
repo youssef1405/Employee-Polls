@@ -12,7 +12,7 @@ const Wrapper = styled.main`
   }
   img {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     margin-bottom: 3rem;
   }
   form {

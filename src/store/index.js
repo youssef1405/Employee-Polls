@@ -3,7 +3,6 @@ import pollsReducer from '../features/polls/pollsSlice';
 import usersReducer from '../features/users/usersSlice';
 import {
   loadPolls,
-  showPoll,
   savePoll,
   changePollStatus,
   togglePolls,
@@ -26,7 +25,6 @@ export {
   loadPolls,
   getUsers,
   setCurrentUser,
-  showPoll,
   savePoll,
   changePollStatus,
   addAnswer,

@@ -4,9 +4,7 @@ import { _getUsers } from '../../_DATA';
 const usersSlice = createSlice({
   name: 'users',
   initialState: {
-    currentUser: {
-      user: '',
-    },
+    currentUser: null,
     data: null,
   },
   reducers: {

@@ -7,10 +7,10 @@ import { GiTrophy } from 'react-icons/gi';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { user, avatarURL } = useSelector((state) => state.users.currentUser);
+  const authUser = useSelector((state) => state.users.currentUser);
 
   const logout = () => {
-    dispatch(setCurrentUser({}));
+    dispatch(setCurrentUser(null));
     dispatch(togglePolls(true));
   };
 
@@ -30,17 +30,17 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to='/new-poll'>
+            <Link to='/add'>
               <FaPoll />
               New Poll
             </Link>
           </li>
         </div>
-        {user && (
+        {authUser && (
           <div className='user-menu'>
             <li className='user-item'>
-              <img className='avatar' src={avatarURL} alt='avatar' />
-              <span>{user}</span>
+              <img className='avatar' src={authUser.avatarURL} alt='avatar' />
+              <span>{authUser.user}</span>
             </li>
 
             <li>

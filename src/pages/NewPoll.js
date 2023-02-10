@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { savePoll, addPoll } from '../store';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Wrapper from '../assests/wrappers/NewPoll';
 
 const NewPoll = () => {
@@ -14,12 +13,11 @@ const NewPoll = () => {
   const [isBlank, setIsBlank] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const author = useSelector((state) => state.users.currentUser.user);
   const polls = useSelector((state) => state.polls.data);
-  const users = useSelector((state) => state.users.data);
+  const { data, currentUser } = useSelector((state) => state.users);
 
-  const poll =
-    users && polls.find((poll) => users[author].questions.includes(poll.id)); // newly
+  const author = currentUser ? currentUser.user : '';
+  const poll = polls.find((poll) => !data[author].questions.includes(poll.id)); // newly
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,17 +30,10 @@ const NewPoll = () => {
     }
     setIsBlank(false);
     dispatch(savePoll({ author, optionOneText, optionTwoText }));
-    dispatch(addPoll(poll.id));
+    poll && dispatch(addPoll(poll.id));
+
     naviagte('/');
   };
-
-  useEffect(() => {
-    if (!author) {
-      naviagte('/login');
-      toast.warn('Please sign in first!');
-      return;
-    }
-  }, [author, naviagte]);
 
   return (
     <Wrapper>
